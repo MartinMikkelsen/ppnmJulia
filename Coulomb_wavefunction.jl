@@ -29,7 +29,7 @@ function irregular_coulomb(ℓ,η,ρ)
 end
 
 
-xes = range(0,10,50)
+xes = range(0,10,100)
 coulombwave1 = real([regular_coulomb(1,-2,i) for i in xes])
 coulombwave2 = real([regular_coulomb(2,-10,i) for i in xes])
 
