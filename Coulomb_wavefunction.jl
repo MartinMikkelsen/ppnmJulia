@@ -36,3 +36,11 @@ coulombwave2 = real([regular_coulomb(2,-10,i) for i in xes])
 
 plot!(xes,coulombwave1, linewidth=2.5, label="Regular Coulomb wave(1,-2,ρ)")
 plot!(xes,coulombwave2, linewidth=2.5, label="Regular Coulomb wave(2,-10,ρ)")
+
+
+using Test
+
+@testset "complex_quadrature" begin
+    @test_approx_eq complex_quadrature(x->x^2,0,1) ≈ 0.3333333333333333im
+    @test_approx_eq complex_quadrature(x->x^3,0,1) ≈ 0.25im
+end

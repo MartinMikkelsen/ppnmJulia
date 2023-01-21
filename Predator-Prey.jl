@@ -34,4 +34,4 @@ sol = solve(prob)
 p1 = plot(sol,title = "Rabbits vs Wolves")
 p2 = plot(sol,idxs=z,title = "Total Animals")
 
-plot(p1,p2,layout=(2,1))
+plot!(p1,p2,layout=(2,1))

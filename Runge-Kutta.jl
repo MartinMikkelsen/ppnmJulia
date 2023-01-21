@@ -29,3 +29,11 @@ plot(times,sol[1,:],label="ω(t)",linewidth=2.5)
 plot!(times,sol[2,:],label="θ(t)",linewidth=2.5)
 
 @benchmark euler(pend, y0, times, args=(b, c))
+using Test
+
+@testset "Testing euler function" begin
+    @test sol[1,1] ≈ 3.09997
+    @test sol[2,1] ≈ 0.0
+    @test sol[1,1001] ≈ 3.14159
+    @test sol[2,1001] ≈ -0.00174533
+end

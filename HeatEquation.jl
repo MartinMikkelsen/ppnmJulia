@@ -1,4 +1,4 @@
-using ModelingToolkit, MethodOfLines, DomainSets, OrdinaryDiffEq
+using ModelingToolkit, OrdinaryDiffEq, DomainSets
 # Method of Manufactured Solutions
 u_exact = (x,t) -> exp.(-t) * sin.(x)
 
@@ -12,7 +12,7 @@ Dxx = Differential(x)^2
 # 1D PDE and boundary conditions
 eq  = Dt(u(t, x)) ~ Dxx(u(t, x))
 bcs = [u(0, x) ~ sin(x),
-        u(t, -1.0) + 3Dx(u(t, -1.0)) ~ exp(-t) * (sin(-1.0) + 3cos(-1.0)),
+        u(t, -1.0) + 3*Dx(u(t, -1.0)) ~ exp(-t) * (sin(-1.0) + 3cos(-1.0)),
         u(t, 1.0) + Dx(u(t, 1.0)) ~ exp(-t) * (sin(1.0) + cos(1.0))]
 
 # Space and time domains
@@ -44,7 +44,7 @@ solu = sol[u(t, x)]
 using Plots
 plt = plot()
 
-for i in 1:length(discrete_t)
+for i in 1:eachindex(discrete_t)
     plot!(discrete_x, solu[i, :], label="Numerical, t=$(discrete_t[i])")
     scatter!(discrete_x, u_exact(discrete_x, discrete_t[i]), label="Exact, t=$(discrete_t[i])")
 end
