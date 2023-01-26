@@ -11,16 +11,26 @@ default(
 )
 
 
-x = range(-25,25,1000)
+x = range(-25,25,5000)
 
-plot(x,Fresnel_C_integral.(x),label=L"C(x)")
-plot!(x,Fresnel_C_err.(x), ls=:dash, lw=1.5, label=L"\tilde{C}(x)")
-title!("Fresnel Integral")
-xlabel!(L"x")
-#savefig("./FewSpecialFunctionsTest/Fresnel_C_example.pdf")
+# plot(x,Fresnel_C_integral.(x),label=L"C(x)")
+# plot!(x,Fresnel_C_err.(x), ls=:dash, lw=1.5, label=L"\tilde{C}(x)")
+# title!("Fresnel Integral")
+# xlabel!(L"x")
+# #savefig("./FewSpecialFunctionsTest/Fresnel_C_example.pdf")
 
-plot(x,Fresnel_S_integral.(x),label=L"S(x)")
-plot!(x,Fresnel_S_err.(x), ls=:dash, lw=1.5, label=L"\tilde{S}(x)")
-title!("Fresnel Integral")
-xlabel!(L"x")
-#savefig("./FewSpecialFunctionsTest/Fresnel_S_example.pdf")
+# plot(x,Fresnel_S_integral.(x),label=L"S(x)")
+# plot!(x,Fresnel_S_err.(x), ls=:dash, lw=1.5, label=L"\tilde{S}(x)")
+# title!("Fresnel Integral")
+# xlabel!(L"x")
+# #savefig("./FewSpecialFunctionsTest/Fresnel_S_example.pdf")
+
+# plot(Fresnel_C_err.(x),Fresnel_S_err.(x))
+# xlabel!(L"C(x)")
+# ylabel!(L"S(x)")
+# title!("Euler Spiral")
+# #savefig("./FewSpecialFunctionsTest/Euler_Spiral.pdf")
+
+@benchmark Fresnel_C_err.($x)
+
+@benchmark Fresnel_C_integral.($x)
