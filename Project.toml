@@ -1,0 +1,3 @@
+[deps]
+FewSpecialFunctions = "6fcbd3ca-4273-49c4-98b3-81b765566de6"
+PyPlot = "d330b81b-6aea-500a-939a-2ce795aea3ee"

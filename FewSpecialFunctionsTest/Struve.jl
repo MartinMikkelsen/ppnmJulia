@@ -1,4 +1,4 @@
-using Plots, FewSpecialFunctions, SpecialFunctions, QuadGK, BenchmarkTools, LaTeXStrings
+using Plots, FewSpecialFunctions, SpecialFunctions, QuadGK, BenchmarkTools, LaTeXStrings, PyPlot
 
 plot_font = "Computer Modern"
 default(

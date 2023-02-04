@@ -16,5 +16,5 @@ x = range(0,15,1000)
 plot(x,Clausen.(x), label=L"Cl_2(ϕ)")
 xlabel!(L"ϕ")
 title!("Clausen function")
-savefig("./FewSpecialFunctionsTest/Clausen_Example.pdf")
+#savefig("./FewSpecialFunctionsTest/Clausen_Example.pdf")
 
