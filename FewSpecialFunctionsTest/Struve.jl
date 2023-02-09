@@ -10,6 +10,27 @@ default(
     palette=:tab10,
 )
 
+function H0(x::Float64)
+    if abs(x) < 0.1
+        # series expansion for small x
+        h0 = x^2/3 - x^4/30 + x^6/840
+        # add more terms to the series expansion if needed
+        return h0
+    else
+        return besselj(0, x) * cos(x) - bessely(0, x) * sin(x)
+    end
+end
+
+function H1(x::Float64)
+    if abs(x) < 0.1
+        # series expansion for small x
+        h1 = x - x^3/6 + x^5/60 - x^7/2520
+        # add more terms to the series expansion if needed
+        return h1
+    else
+        return besselj(1, x) * cos(x) - bessely(1, x) * sin(x)
+    end
+end
 
 x = range(-5,5,1000)
 
