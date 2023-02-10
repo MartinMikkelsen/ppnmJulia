@@ -46,3 +46,7 @@ plot(x,real(Coulomb_H.(ℓ,η,x)), label="G")
 
 plot!(x,exp.(-θ.(ℓ,η,x)),label="large ρ")
 #plot!(x2,(x2.^(-ℓ))/((2*ℓ+1).*C(ℓ,η)), label="small ρ")
+
+function regular_coulomb_1F1(ℓ,η,ρ)
+    return C_test(ℓ,η).*ρ^(ℓ+1).*exp(1im*ρ).*confluent_hypergeometric_1F1(ℓ+1+1im*η,2*ℓ+2,-2*1im*ρ)
+end

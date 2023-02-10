@@ -39,26 +39,32 @@ end
 
 function Hypergeometric_0F1(b,z)
     if b == 1
-        return 1/π * quadgk(t -> exp(2*sqrt(z)*cos(t)),0,π)[1]
+        return 1/π .* quadgk(t -> exp(2*sqrt(z)*cos(t)),0,π)[1]
     end
-    if real(b)>0.5
+    if real(b)>=0.5
         return (2*gamma(b))/(sqrt(π)*gamma(b-0.5)).*quadgk(t -> (1-t^2)^(b-1.5)*cosh(2*sqrt(z)*t),0,1)[1]
     end 
-    if n typeof(val)<:Number > 0 
-        return factorial(n-1)/(π)*z^((1-n)/2)*quadgk(t -> exp(2*sqrt(2)*cos(t))*cos((t-1)*t),0,π)[1]
-    end
-
 end
 
 function confluent_hypergeometric_1F1(a,b,z)
-    if real(a)>0
-        return 1/(gamma(a)).*quadgk(t -> exp(-t)*t^(a-1).*Hypergeometric_0F1(b,z),0,Inf)[1]
-    end
     if real(b)>real(a)>0
-        return gamma(b)/(gamma(a).*gamma(b-a)).*quadgk(t -> exp(z*t).*t^(a-1).*(1-t)^(-a+b-1),0,1)[1]
+        return gamma(b)/(gamma(a).*gamma(b-a)).*quadgk(t -> exp(z.*t).*t^(a-1).*(1-t).^(-a+b-1),0,1)[1]
+    end
+    if real(a)>0 
+        return 1/(gamma(a)).*quadgk(t -> exp(-t).*t.^(a-1).*Hypergeometric_0F1(b,z.*t),1e-5,Inf)[1]
     end
 end
 
-x = range(0,15,100)
+function confluent_hypergeometric_U(a,b,z)
+    if real(a) > 0 
+        return 1/(gamma(a)).*quadgk(t ->  exp(-z*t)*t^(a-1)*(t+1)^(-a+b-1),0,10)[1]
+    end
+end
 
-plot(x,confluent_hypergeometric_1F1.(1.0,2,x))
+function parabolic_cylinder_even(a,z)
+    return exp(-z.^2/4).*confluent_hypergeometric_1F1(0.5.*a+0.25,0.5,z.^2/2)
+end
+
+function parabolic_cylinder_even_approx(a,z)
+    return 1 + a * z^2 / factorial(2) + (a^2 + 0.5) * z^4 / factorial(4) + (a^3 + 7/2 * a) * z^5 / factorial(6) + (a^4 + 11 * a^2 + 15/4) * z^8 / factorial(8) + (a^5 + 25 * a^3 + 211/4 * a) * z^10 / factorial(10)
+end
