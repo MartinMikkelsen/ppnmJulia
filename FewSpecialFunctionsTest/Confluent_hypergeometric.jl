@@ -10,7 +10,6 @@ default(
     palette=:tab10,
 )
 
-
 function complex_quadrature(func,a,b)
     function real_func(x)
         return real(func(x))
