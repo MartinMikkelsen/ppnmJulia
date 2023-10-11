@@ -1,4 +1,4 @@
-using FewSpecialFunctions, Plots, SpecialFunctions, QuadGK, BenchmarkTools
+using FewSpecialFunctions, Plots, SpecialFunctions, QuadGK, BenchmarkTools, LaTeXStrings
 
 plot_font = "Computer Modern"
 default(
@@ -548,4 +548,5 @@ plot(x,FermiDiracIntegralNorm.(-1/2,x),label=L"F_{-1/2}(x)")
 plot!(x,FermiDiracIntegralNorm.(1/2,x),label=L"F_{1/2}(x)")
 plot!(x,FermiDiracIntegralNorm.(3/2,x),label=L"F_{3/2}(x)")
 plot!(x,FermiDiracIntegralNorm.(5/2,x),label=L"F_{5/2}(x)")
-
+title!("Fermi-Dirac Integral")
+xlabel!(L"x")

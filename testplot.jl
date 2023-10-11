@@ -1,5 +1,7 @@
-using FewSpecialFunctions
+using FewSpecialFunctions, BenchmarkTools
 
-x = range(0,500,500)
+@btime FermiDiracIntegralNorm(5/2,1)
 
-plot(x,FermiDiracIntegralNorm.(3/2,x))
+
+
+FermiDiracIntegral(3/2,1.0)
