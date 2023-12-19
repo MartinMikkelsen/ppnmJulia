@@ -1,4 +1,4 @@
-using DifferentialEquations, Plots, Term
+using DifferentialEquations, Plots
 
 s = 77.27
 w = 0.161
